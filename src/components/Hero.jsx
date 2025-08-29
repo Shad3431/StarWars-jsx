@@ -1,10 +1,14 @@
 import React from 'react';
 import main from "../images/main.jpg";
+import {useParams} from "react-router";
+import {characters} from "../utils/characters.js";
 
-const Hero = () => {
+const Hero = ({heroId}) => {
+
+
     return (
         <section className="float-start w-25">
-            <img className="w-100" src={main} alt="hero"/>
+            <img className="w-100" src={characters[heroId].img} alt="hero"/>
         </section>
     );
 };

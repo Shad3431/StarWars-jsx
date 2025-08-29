@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router";
-import {navItems} from "../utils/constants.jsx";
+import {navItems} from "../utils/constants.js";
 import NavItem from "./NavItem.jsx";
 
 const Navigation = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { base_url } from "../utils/constants.jsx";
+import { base_url } from "../utils/constants.js";
 
 const AboutMe = () => {
     const [person, setPerson] = useState({});

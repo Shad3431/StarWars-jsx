@@ -1,11 +1,12 @@
 import React from 'react';
 import Navigation from "./Navigation.jsx";
+import {characters} from "../utils/characters.js";
 
-const Header = () => {
+const Header = ({hero}) => {
     return (
         <header>
             <Navigation/>
-            <h1>Luke Skywalker</h1>
+            <h1>{characters[hero].name}</h1>
         </header>
     );
 };

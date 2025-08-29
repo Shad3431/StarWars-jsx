@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {base_url, period_days_24} from "../utils/constants.jsx";
+import {base_url, period_days_24} from "../utils/constants.js";
 
 const Contact = () => {
     const [planets, setPlanets] = useState(['wait...'])

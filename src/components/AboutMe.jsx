@@ -1,38 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import {base_url} from "../utils/constants.jsx";
+
+import {characters} from "../utils/characters.js";
 
 
-const AboutMe = () => {
-    const [hero, setHero] = useState({});
+
+const AboutMe = ({hero}) => {
+    const [heroData, setHeroData] = useState({});
     const period=1000*60*60*24;
     useEffect(() => {
-        const heroStorage= JSON.parse(localStorage.getItem("luke"))
+        const heroStorage= JSON.parse(localStorage.getItem(characters[hero].name))
         if(heroStorage && (Date.now()-heroStorage.time)<period) {
-            setHero(heroStorage.payload)
+            setHeroData(heroStorage.payload)
         }else {
-            fetch(`${base_url}v1/peoples/1`)
+            fetch(`${characters[hero].url}`)
                 .then(response => response.json())
                 .then(data => {
-                    setHero(data);
+                    setHeroData(data);
                     const info={
                         payload:data,
                         time: Date.now()
                     }
-                    localStorage.setItem("luke", JSON.stringify(info))
+                    localStorage.setItem(characters[hero].name, JSON.stringify(info))
                 })
         }
 
-    }, []);
+    }, [hero]);
     //TODO with * use sessionStorage or localStorage for save requests on 24 hours
     return (
         <div>
-            <p>Name:{hero.name}</p>
-            <p>Height:{hero.height}</p>
-            <p>Birth Year:{hero.birth_year}</p>
-            <p>Gender:{hero.gender}</p>
-            <p>Mass: {hero.mass}</p>
-            <p>Skin color: {hero.skin_color}</p>
-            <p>Eye color: {hero.eye_color}</p>
+            <p>Name:{heroData.name}</p>
+            <p>Height:{heroData.height}</p>
+            <p>Birth Year:{heroData.birth_year}</p>
+            <p>Gender:{heroData.gender}</p>
+            <p>Mass: {heroData.mass}</p>
+            <p>Skin color: {heroData.skin_color}</p>
+            <p>Eye color: {heroData.eye_color}</p>
 
 
         </div>

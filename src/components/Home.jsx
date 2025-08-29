@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import DreamTeam from "./DreamTeam.jsx";
 import FarGalaxy from "./FarGalaxy.jsx";
 import Hero from "./Hero.jsx";
-const Home = () => {
+import {useParams} from "react-router";
+const Home = ({hero,setHero}) => {
+    const {heroId}=useParams();
+    useEffect(() => {
+        if (heroId){
+            setHero(heroId)
+        }else{
+            setHero("luke")
+        }
+
+    }, [heroId]);
+
+
     return (
         <main className="clearfix">
-           <Hero/>
-           <DreamTeam/>
+           <Hero heroId={hero}/>
+           <DreamTeam hero={hero}/>
             <FarGalaxy/>
 
         </main>
